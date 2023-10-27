@@ -2,23 +2,59 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>DANELY</title>
+    <title>WUC system</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-toggle.css">
 
 </head>
 <body>
 <header>
-    <div class="icon">WUC System</div>
-    <ul>
-        <li><a href="#" class="nav__link current-link">Котёл</a></li>
-        <li><a href="#" class="nav__link">Подвал</a></li>
-        <li><a href="#" class="nav__link">Фильтр</a></li>
+    <div class="icon">WUC system</div>
+    <!--    <ul>-->
+    <!--&lt;!&ndash;        <li><a href="#" class="nav__link current-link">Главная</a></li>&ndash;&gt;-->
+    <!--&lt;!&ndash;        <li><a href="#" class="nav__link">Настройки</a></li>&ndash;&gt;-->
+    <!--&lt;!&ndash;        <li><a href="#" class="nav__link">Фильтр</a></li>&ndash;&gt;-->
 
-    </ul>
+    <!--    </ul>-->
+    <div><a href="#" class="nav__link">Settings</a></div>
+
 </header>
-<main>
+<div class="main-wrapper">
+    <div class="main">
+        <div class="block">
+            <div clas="block-title">ы
+                <span class="block-title-p">местонахождение:</span> <br>
+                <span class="block-title-t">ванная</span>
+            </div>
 
-    <a href="src/h1.html">Hi</a>
-</main>
+            <div class="block-mode">
+                <span >Режим</span>
+                <span>
+                    <input class="tgl tgl-skewed" id="cb3" type="checkbox"/>
+                    <label class="tgl-btn" data-tg-off="выкл" data-tg-on="вкл" for="cb3"></label>
+                </span>
+
+            </div>
+            <div class="block-mode">
+                <span >Состояние</span>
+                <span>
+                    <input class="tgl tgl-skewed" id="cb4" type="checkbox"/>
+                    <label class="tgl-btn" data-tg-off="протек" data-tg-on="сухо" for="cb4"></label>
+                </span>
+
+            </div>
+
+        </div>
+        <a href="src/h1.html">Hi</a>
+        <br>
+        <div class="range"><input type="range" value="25" min="0" max="50" oninput="rangeValue.innerText = this.value">
+            <p id="rangeValue">25</p></div>
+        <br>
+        <div class="range">
+            <input type="range" min="0" max="50" value="0" id="range2" class="range-input"/>
+            <div class="value2">0</div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

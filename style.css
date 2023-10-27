@@ -1,8 +1,8 @@
 body {
-    font-family: "Quicksand", sans-serif;
+    font-family: "hhre", "Inter Semi Bold", "Quicksand", sans-serif;
     font-size: 40px;
     font-weight: 550;
-    line-height: 1.3;
+    /*line-height: 1.3;*/
     color: #e5e5e5;
     margin: 0;
     padding: 0;
@@ -15,6 +15,7 @@ header {
     display: flex;
     flex-direction: row;
     padding-right: 8dvw;
+    justify-content: space-between;
 }
 
 ul {
@@ -39,14 +40,19 @@ ul {
 .nav__link {
     display: inline-block;
     text-decoration: none;
-    color: #fff;
-    font-size: 23px;
+    /*color: #fff;*/
+    color: #b1b1b1;
+
+    font-size: 20px;
     letter-spacing: 2px;
     text-transform: uppercase;
     position: relative;
-    transition: all 0.4s ease;
-    /*transition: 0.5s cubic-bezier(0.68, 0.55, 0.265, 1.55) ease;*/
+    /*transition: all 0.4s ease-out;*/
+    /*  transition: background-position 275ms ease;*/
+    transition: 75ms linear; /* Время изменения */
 
+
+    border-bottom: 4px solid #27272A;
     padding: 20px 35px;
 }
 
@@ -61,8 +67,9 @@ ul {
 }
 
 .nav__link:hover {
-    color: #71717A;
-    border-bottom: 4px solid #71717A;
+    color: #ffffff;
+    /*color: #71717A;*/
+    border-bottom: 4px solid #ffffff;
     padding-bottom: 20px;
     /* добавляем рамку снизу */
 }
@@ -80,6 +87,8 @@ ul {
 }
 
 .current-link {
+    color: #ffffff;
+
     /*text-decoration: underline;*/
     /*text-decoration-color: #52525B;*/
     /* нивелируем размеры рамки */
@@ -91,11 +100,55 @@ ul {
 
 }
 
+.main-wrapper  {
+    /*margin: auto;*/
+    display: flex;
+    flex-direction: column;
+    /*background: white;*/
+    align-items: center;
+}
+
 .main  {
-    margin: auto;
+    /*margin: auto;*/
     display: flex;
     flex-direction: column;
     width: 800px;
-    background: white;
+    /*background: white;*/
+    max-width: 80%;
 
+}
+
+.range input {margin-top:10%;-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-o-transform:rotate(0deg);transform:rotate(180deg);}
+
+.block {
+    font-size: 25px;
+    margin-top: 10px;
+    height: 70px;
+    background: white;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 40px;
+    /*padding-left: 20px;*/
+}
+
+
+.block-title-t {
+    color: black;
+    margin-left: 10px;
+
+    text-transform: uppercase;
+}
+
+.block-title-p {
+    font-size: 15px;
+    margin-bottom: 30px;
+}
+
+.block-mode {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
