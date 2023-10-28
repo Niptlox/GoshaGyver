@@ -122,9 +122,21 @@ ul {
 
 .range input {margin-top:10%;-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-o-transform:rotate(0deg);transform:rotate(180deg);}
 
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #27272A;
+    /*margin: 1em 0;*/
+    margin: 8px 0px;
+    padding: 0;
+
+}
+
 .block {
+    color: #27272A;
     padding: 15px;
-    font-size: 25px;
+    font-size: 22px;
     margin-top: 10px;
     min-height: 70px;
     background: white;
@@ -133,15 +145,29 @@ ul {
     /*flex-direction: row;*/
     /*align-items: center;*/
     /*justify-content: space-between;*/
-    padding-right: 40px;
+
     min-width: 70%;
     /*padding-left: 20px;*/
 }
+.block-mode {
+    display: flex;
+    flex-direction: row;
+    margin-top: 8px;
+}
 
+.block-title {
+    margin-bottom: 15px;
+}
 .block-title-t {
     color: black;
+    margin-bottom: 10px;
     margin-left: 10px;
-    text-transform: uppercase;
+    text-transform: capitalize;
+    font-size: 25px;
+}
+
+.state {
+    margin-left: 10px;
 }
 
 .state-wet {
