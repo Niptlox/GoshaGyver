@@ -14,7 +14,7 @@ header {
     background: #27272A;
     display: flex;
     flex-direction: row;
-    padding-right: 8dvw;
+    padding-right: 5%;
     justify-content: space-between;
 }
 
@@ -100,7 +100,7 @@ ul {
 
 }
 
-.main-wrapper  {
+.main-wrapper {
     /*margin: auto;*/
     display: flex;
     flex-direction: column;
@@ -108,19 +108,26 @@ ul {
     align-items: center;
 }
 
-.main  {
-    /*margin: auto;*/
+.main {
     display: flex;
     flex-direction: column;
     max-width: 800px;
     align-items: center;
-
-    /*background: white;*/
-    /*max-width: 80%;*/
-
 }
 
-.range input {margin-top:10%;-webkit-transform:rotate(0deg);-moz-transform:rotate(0deg);-o-transform:rotate(0deg);transform:rotate(180deg);}
+.places {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.range input {
+    margin-top: 10%;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(180deg);
+}
 
 hr {
     display: block;
@@ -141,8 +148,9 @@ hr {
     min-height: 70px;
     background: white;
     border-radius: 3px;
-    min-width: 320px;
     width: 30svw;
+    min-width: 320px;
+
     /*display: flex;*/
     /*flex-direction: row;*/
     /*align-items: center;*/
@@ -151,6 +159,7 @@ hr {
 
     /*padding-left: 20px;*/
 }
+
 .block-mode {
     display: flex;
     flex-direction: row;
@@ -160,11 +169,12 @@ hr {
 .block-title {
     margin-bottom: 15px;
 }
+
 .block-title-t {
     color: black;
     margin-bottom: 10px;
     margin-left: 10px;
-    text-transform: capitalize;
+    /*text-transform: capitalize;*/
     font-size: 25px;
 }
 
@@ -175,8 +185,149 @@ hr {
 .state-wet {
     color: crimson;
 }
+
 .state-dry {
     color: lightgreen;
 }
 
 
+@media (max-width: 500px) {
+    #t-system {
+        display: none;
+    }
+}
+
+
+/*=============================== SETTINGS ===================================*/
+
+fieldset {
+    display: flex;
+    flex-direction: column;
+    border: none;
+
+}
+
+.mode-radio-label {
+    font-family: system-ui, sans-serif;
+    font-size: 22px;
+
+}
+
+.submit {
+    margin-right: 5%;
+    /*margin-left: 10px;*/
+    /*padding-bottom: 10px;*/
+    /*padding-top: 0.25em;*/
+    transform: skew(-10deg);
+    color: #ffffff;
+    font-size: 0.8em;
+    font-weight: bold;
+    height: 1.4em;
+    background: #86d993;
+    font-family: sans-serif;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    text-transform: uppercase;
+    line-height: 1em;
+    border: none;
+    float: right;
+
+}
+
+.log-view {
+    background: #27272A;
+    color: #86d993;
+    font-size: 15px;
+    font-family: Courier, system-ui;
+    font-stretch: inherit;
+    line-height: 1;
+    font-weight: revert;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.scrollbar {
+    padding: 10px;
+    overflow-y: auto;
+    overflow-x: auto;
+    height: 150px;
+    border-radius: 5px;
+
+}
+
+.scrollbar::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    background-color: #888888;
+}
+
+.scrollbar::-webkit-scrollbar {
+    width: 10px;
+    background-color: #888888;
+    border-radius: 5px;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    background-color: #e5e5e5;
+}
+
+/* ============================ RADIO ==============================*/
+
+input[type=radio] {
+    --s: 1em; /* control the size */
+    --c: #009688; /* the active color */
+
+    height: var(--s);
+    aspect-ratio: 1;
+    border: calc(var(--s) / 8) solid #939393;
+    padding: calc(var(--s) / 8);
+    background: radial-gradient(farthest-side, var(--c) 94%, #0000) 50%/0 0 no-repeat content-box;
+    border-radius: 50%;
+    outline-offset: calc(var(--s) / 10);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    font-size: inherit;
+    transition: .3s;
+}
+
+input[type=radio]:checked {
+    border-color: var(--c);
+    background-size: 100% 100%;
+}
+
+input[type=radio]:disabled {
+    background: linear-gradient(#939393 0 0) 50%/100% 20% no-repeat content-box;
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+@media print {
+    input[type=radio] {
+        -webkit-appearance: auto;
+        -moz-appearance: auto;
+        appearance: auto;
+        background: none;
+    }
+}
+
+label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin: 5px 0;
+    cursor: pointer;
+}
+
+/*body {*/
+/*  margin:0;*/
+/*  min-height:100vh;*/
+/*  display:grid;*/
+/*  place-content:center;*/
+/*  font-family: system-ui, sans-serif;*/
+/*  font-size: 40px;*/
+/*}*/

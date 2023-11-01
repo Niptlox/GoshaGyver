@@ -16,45 +16,80 @@
     <!--&lt;!&ndash;        <li><a href="#" class="nav__link">Фильтр</a></li>&ndash;&gt;-->
 
     <!--    </ul>-->
-    <div><a href="/settings" class="nav__link">Settings</a></div>
+    <div><a href="/" class="nav__link">Home</a></div>
 
 </header>
 <div class="main-wrapper">
     <div class="main">
         <div class="places">
-            <div class="block" hidden>
+
+            <div class="block">
                 <div class="block-title">
-                    <!--                <span class="block-title-p">Местонахождение: </span>-->
-                    <span class="block-title-t">ванная</span>
+                    <span class="block-title-t">Режим работы</span>
                     <hr>
                 </div>
-
-                <div class="block-mode">
-                    <span>Состояние: </span>
-                    <span class="state state-dry" hidden>ПРОТЕЧКИ НЕТ</span>
-                    <span class="state state-wet">ПРОТЕЧКА</span>
-
-                </div>
-                <div class="block-mode">
-                    <span>Отслеживание: </span>
-                    <span>
-                    <input class="tgl tgl-skewed" id="cb3" type="checkbox"/>
-                    <label class="tgl-btn" data-tg-off="выкл" data-tg-on="вкл" for="cb3"></label>
-                </span>
-
+                <div>
+                    <form action="">
+                        <fieldset>
+                            <label class="mode-radio-label">
+                                <input type="radio" name="work-mode" value="auto" id="auto-mode" checked>
+                                Автоматический
+                            </label>
+                            <label class="mode-radio-label">
+                                <input type="radio" name="work-mode" value="hand" id="hand-mode">
+                                Ручной
+                            </label>
+                        </fieldset>
+                        <button type="submit" class="submit">сохранить</button>
+                    </form>
                 </div>
 
             </div>
+
+            <div class="block">
+                <div class="block-title">
+                    <span class="block-title-t">Тестирование</span>
+                    <hr>
+                </div>
+                <div class="log-view scrollbar">
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+                    labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+                    et ea rebum. Stet clita kasd gubergren,
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+                    labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+                    et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                    Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum
+                    dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit
+                    praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit
+                    amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna
+                    aliquam erat volutpat.
+                </div>
+                <button class="submit">начать</button>
+            </div>
+
+            <div class="block">
+                <div class="block-title">
+                    <span class="block-title-t">Логирование</span>
+                    <hr>
+                </div>
+                <div class="log-view scrollbar">
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+                    labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+                    et ea rebum. Stet clita kasd gubergren,
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+                    labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+                    et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                    Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum
+                    dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit
+                    praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit
+                    amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna
+                    aliquam erat volutpat.
+                </div>
+                <button class="submit">скачать весь</button>
+            </div>
+
         </div>
-        <!--        <a href="#">Hi</a>-->
-        <!--        <br>-->
-        <!--        <div class="range"><input type="range" value="25" min="0" max="50" oninput="rangeValue.innerText = this.value">-->
-        <!--            <p id="rangeValue">25</p></div>-->
-        <!--        <br>-->
-        <!--        <div class="range">-->
-        <!--            <input type="range" min="0" max="50" value="0" id="range2" class="range-input"/>-->
-        <!--            <div class="value2">0</div>-->
-        <!--        </div>-->
+
     </div>
 </div>
 <script>
@@ -139,7 +174,7 @@ r_handler - функция-обработчик ответа от сервера
     var places = new Map();
 
     function set_enabled(element, id) {
-        send_json(url+"update_data", {"set_enabled": {"id": id, "enabled": element.checked}})
+        send_json(url + "update_data", {"set_enabled": {"id": id, "enabled": element.checked}})
     }
 
     function update() {
@@ -190,17 +225,16 @@ r_handler - функция-обработчик ответа от сервера
 
             </div>`;
 
-               newHTML += block;
+                newHTML += block;
             }
             places_h.innerHTML = newHTML;
-
 
 
         }));
     }
 
-    update();
-    setInterval(update, 5000);
+    // update();
+    // setInterval(update, 5000);
 
 </script>
 

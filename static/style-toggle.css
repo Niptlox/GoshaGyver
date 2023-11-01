@@ -68,11 +68,11 @@
 /*--------------------------------------*/
 
 .tgl-skewed + .tgl-btn {
-  overflow: hidden;
   transform: skew(-10deg);
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
   transition: all 0.2s ease;
+  overflow: hidden;
   font-family: sans-serif;
   background: #888;
 }
