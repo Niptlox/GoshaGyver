@@ -3,7 +3,8 @@ body {
     font-size: 40px;
     font-weight: 550;
     /*line-height: 1.3;*/
-    color: #e5e5e5;
+    /*color: #e5e5e5;*/
+    color: #ffffff;
     margin: 0;
     padding: 0;
     background: #e4e4e4;
@@ -149,7 +150,7 @@ hr {
     background: white;
     border-radius: 3px;
     width: 30svw;
-    min-width: 320px;
+    min-width: 420px;
 
     /*display: flex;*/
     /*flex-direction: row;*/
@@ -214,16 +215,19 @@ fieldset {
 }
 
 .submit {
-    margin-right: 5%;
+    text-decoration: none;
+    margin-right: 2px;
     /*margin-left: 10px;*/
     /*padding-bottom: 10px;*/
     /*padding-top: 0.25em;*/
+    padding: 0 5px 0 5px;
+    border-radius: 4px;
     transform: skew(-10deg);
     color: #ffffff;
     font-size: 0.8em;
     font-weight: bold;
     height: 1.4em;
-    background: #86d993;
+    background: #6abe77;
     font-family: sans-serif;
     cursor: pointer;
     display: inline-block;
@@ -232,6 +236,20 @@ fieldset {
     line-height: 1em;
     border: none;
     float: right;
+}
+
+.submit:hover {
+    background: #54a460;
+    transition: all 0.1s;
+}
+
+
+.submit:active {
+    outline: none;
+    transform: translateX(1px) translateY(2px) skew(-10deg);
+    background: #6abe77;
+    /*box-shadow: 0 0 0 1px rgba(171, 252, 185, 0.8);*/
+    /*transition: background-color 0.1s;*/
 
 }
 
@@ -245,6 +263,11 @@ fieldset {
     font-weight: revert;
     border-radius: 5px;
     margin-bottom: 10px;
+    white-space: pre-wrap;
+
+    overflow: auto;
+    display: flex;
+    flex-direction: column-reverse;
 }
 
 .scrollbar {
@@ -321,6 +344,19 @@ label {
     gap: 10px;
     margin: 5px 0;
     cursor: pointer;
+}
+
+.notransition {
+    -webkit-transition: none !important;
+    -moz-transition: none !important;
+    -o-transition: none !important;
+    transition: none !important;
+    transform: none !important;
+}
+.fieldset {
+    padding-left: 20px;
+    margin-top: 2px;
+    margin-bottom: 2px;
 }
 
 /*body {*/

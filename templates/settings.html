@@ -27,23 +27,28 @@
                 <div class="block-title">
                     <span class="block-title-t">Режим работы</span>
                     <hr>
-                </div>
-                <div>
-                    <form action="">
-                        <fieldset>
-                            <label class="mode-radio-label">
-                                <input type="radio" name="work-mode" value="auto" id="auto-mode" checked>
-                                Автоматический
-                            </label>
-                            <label class="mode-radio-label">
-                                <input type="radio" name="work-mode" value="hand" id="hand-mode">
-                                Ручной
-                            </label>
-                        </fieldset>
-                        <button type="submit" class="submit">сохранить</button>
-                    </form>
-                </div>
+                    <fieldset class="">
+                        <label class="mode-radio-label">
+                            <input type="radio" name="work-mode" value=0 id="auto-mode"> Автоматический
+                        </label>
+                        <label class="mode-radio-label">
+                            <input type="radio" name="work-mode" value=1 id="hand-mode"> Ручной
+                        </label>
+                    </fieldset>
 
+                    <hr>
+                    <div class="fieldset">
+                        <div class="block-mode">
+                            <span style="margin-top: 4px">Состояние крана: </span>
+                            <span id="tap">
+<!--                            <input class="tgl tgl-skewed" id="checkbox-tap" type="checkbox" onchange='set_tap(this)' style="background: rgba(0,220,0,0.5);"/>-->
+                                <!--                            <label class="tgl-btn" data-tg-off="ЗАКРЫТ" data-tg-on="ОТКРЫТ" for="checkbox-tap" style="background: rgba(0,220,0,0.5);"></label>-->
+                            </span>
+                        </div>
+                    </div>
+                    <button onclick="update_settings()" class="submit">сохранить</button>
+
+                </div>
             </div>
 
             <div class="block">
@@ -51,20 +56,8 @@
                     <span class="block-title-t">Тестирование</span>
                     <hr>
                 </div>
-                <div class="log-view scrollbar">
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
-                    labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
-                    et ea rebum. Stet clita kasd gubergren,
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
-                    labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
-                    et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                    Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum
-                    dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit
-                    praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit
-                    amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna
-                    aliquam erat volutpat.
-                </div>
-                <button class="submit">начать</button>
+                <div class="log-view scrollbar" name="test-text"></div>
+                <button class="submit" onclick="start_testing()">начать</button>
             </div>
 
             <div class="block">
@@ -72,20 +65,9 @@
                     <span class="block-title-t">Логирование</span>
                     <hr>
                 </div>
-                <div class="log-view scrollbar">
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
-                    labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
-                    et ea rebum. Stet clita kasd gubergren,
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
-                    labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
-                    et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                    Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum
-                    dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit
-                    praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit
-                    amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna
-                    aliquam erat volutpat.
-                </div>
-                <button class="submit">скачать весь</button>
+                <div class="log-view scrollbar" name="log-text"></div>
+                <a class="submit" href="/uploads/logs.txt" download="logs.txt" style="line-height: 1.5em">скачать
+                    весь</a>
             </div>
 
         </div>
@@ -122,7 +104,7 @@ r_path    - путь к файлу
 r_args    - аргументы вида a=1&b=2&c=3...
 r_handler - функция-обработчик ответа от сервера
 */
-    function SendRequest(r_method, r_path, r_args, r_handler) {
+    function SendRequest(r_method, r_path, r_args = "", r_handler = null) {
         //Создаём запрос
         var Request = CreateRequest();
 
@@ -130,16 +112,16 @@ r_handler - функция-обработчик ответа от сервера
         if (!Request) {
             return;
         }
-
-        //Назначаем пользовательский обработчик
-        Request.onreadystatechange = function () {
-            //Если обмен данными завершен
-            if (Request.readyState == 4) {
-                //Передаем управление обработчику пользователя
-                r_handler(Request);
+        if (r_handler != null) {
+            //Назначаем пользовательский обработчик
+            Request.onreadystatechange = function () {
+                //Если обмен данными завершен
+                if (Request.readyState == 4) {
+                    //Передаем управление обработчику пользователя
+                    r_handler(Request);
+                }
             }
         }
-
         //Проверяем, если требуется сделать GET-запрос
         if (r_method.toLowerCase() == "get" && r_args.length > 0)
             r_path += "?" + r_args;
@@ -169,72 +151,65 @@ r_handler - функция-обработчик ответа от сервера
         xmlhttp.send(JSON.stringify(data));
     }
 
-    var url = "";
-    var places_h = document.getElementsByClassName('places')[0];
-    var places = new Map();
+    const MODE_AUTO = 0;
+    const MODE_HAND = 1;
 
-    function set_enabled(element, id) {
-        send_json(url + "update_data", {"set_enabled": {"id": id, "enabled": element.checked}})
+    let first = true;
+    let category = "settings"
+    let url = "";
+    let work_mode_checks = document.getElementsByName('work-mode');
+    let test_text = document.getElementsByName('test-text')[0];
+    let log_text = document.getElementsByName('log-text')[0];
+    let tap = document.getElementById("tap");
+    let places = new Map();
+
+    function set_tap(element) {
+        set_work_mode(MODE_HAND);
+        send_json(url + "/update_settings", {"name": "tap_state", "value": Number(element.checked)})
+        update_settings();
+    }
+
+    function start_testing() {
+        SendRequest("GET", url + "/start_testing", "", update)
+    }
+
+    function set_work_mode(mode) {
+        for (let checker of work_mode_checks)
+            checker.checked = (checker.value == mode);
+    }
+
+    function update_settings() {
+        let work_mode = "0";
+        for (let checker of work_mode_checks)
+            if (checker.checked)
+                work_mode = checker.value;
+        send_json(url + "/update_settings", {"name": "work_mode", "value": parseInt(work_mode)})
     }
 
     function update() {
-
-
-        SendRequest("GET", url + "/get_data", "", (function (req) {
-            console.log(req);
-            var responsedata = eval(`(${req.responseText})`);
-            var newHTML = "";
-            for (let element of responsedata["data"]) {
-                console.log(element["title"]);
-                var title = element["title"];
-                if (element["state"] === "wet")
-                    var state_wet = "";
-                else
-                    var state_wet = "hidden";
-                if (element["state"] === "dry")
-                    var state_dry = "";
-                else
-                    var state_dry = "hidden";
-                if (element["enabled"])
-                    var enabled = "checked";
-                else
-                    var enabled = "";
-
-                var id = element["id"];
-                var block = `<div class="block">
-                <div class="block-title">
-                    <!--                <span class="block-title-p">Местонахождение: </span>-->
-                    <span class="block-title-t">${title}</span>
-                    <hr>
-                </div>
-
-                <div class="block-mode">
-                    <span>Состояние: </span>
-                    <span class="state state-dry" ${state_dry}>ПРОТЕЧКИ НЕТ</span>
-                    <span class="state state-wet" ${state_wet}>ПРОТЕЧКА</span>
-
-                </div>
-                <div class="block-mode">
-                    <span>Отслеживание: </span>
-                    <span>
-                    <input class="tgl tgl-skewed" id="checkbox${id}" type="checkbox" ${enabled} onchange='set_enabled(this, ${id})'/>
-                    <label class="tgl-btn" data-tg-off="выкл" data-tg-on="вкл" for="checkbox${id}"></label>
-                </span>
-
-                </div>
-
-            </div>`;
-
-                newHTML += block;
+        SendRequest("GET", url + "/get_settings", "", (function (req) {
+            console.log(test_text.innerHTML);
+            let responsedata = eval(`(${req.responseText})`)["data"];
+            if (first) {
+                set_work_mode(responsedata["work_mode"]);
             }
-            places_h.innerHTML = newHTML;
+            test_text.innerHTML = responsedata["testing_text"];
+            log_text.innerHTML = responsedata["logging_text"];
+            first = false;
+            let tap_checked = responsedata["tap_state"] ? "checked" : "";
+            tap.innerHTML = `<input class="tgl tgl-skewed" id="checkbox-tap" type="checkbox" onchange='set_tap(this)' ${tap_checked}/>
+                            <label class="tgl-btn" data-tg-off="ЗАКРЫТ" data-tg-on="ОТКРЫТ" for="checkbox-tap"></label>`
+            // tap.classList.add('notransition');
+            // tap.checked = Boolean(responsedata["tap_state"]);
+            // tap.offsetHeight;
+            // tap.classList.remove('notransition');
 
 
         }));
     }
 
-    // update();
-    // setInterval(update, 5000);
+    update();
+    setInterval(update, 5000);
 
 </script>
 

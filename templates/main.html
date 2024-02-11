@@ -133,13 +133,13 @@ r_handler - функция-обработчик ответа от сервера
         xmlhttp.setRequestHeader("Content-Type", "application/json");
         xmlhttp.send(JSON.stringify(data));
     }
-
-    var url = "";
-    var places_h = document.getElementsByClassName('places')[0];
-    var places = new Map();
+    let category = "home"
+    let url = "";
+    let places_h = document.getElementsByClassName('places')[0];
+    let places = new Map();
 
     function set_enabled(element, id) {
-        send_json(url+"update_data", {"set_enabled": {"id": id, "enabled": element.checked}})
+        send_json(url + "update_data", {"set_enabled": [{"id": id, "enabled": element.checked}], "category": category})
     }
 
     function update() {
@@ -147,26 +147,23 @@ r_handler - функция-обработчик ответа от сервера
 
         SendRequest("GET", url + "/get_data", "", (function (req) {
             console.log(req);
-            var responsedata = eval(`(${req.responseText})`);
-            var newHTML = "";
+            let responsedata = eval(`(${req.responseText})`);
+            let newHTML = "";
             for (let element of responsedata["data"]) {
                 console.log(element["title"]);
-                var title = element["title"];
+                let title = element["title"];
+                let state_wet = "hidden";
                 if (element["state"] === "wet")
-                    var state_wet = "";
-                else
-                    var state_wet = "hidden";
+                    state_wet = "";
+                let state_dry = "hidden";
                 if (element["state"] === "dry")
-                    var state_dry = "";
-                else
-                    var state_dry = "hidden";
+                    state_dry = "";
+                let enabled = "";
                 if (element["enabled"])
-                    var enabled = "checked";
-                else
-                    var enabled = "";
+                    enabled = "checked";
 
-                var id = element["id"];
-                var block = `<div class="block">
+                let id = element["id"];
+                let block = `<div class="block">
                 <div class="block-title">
                     <!--                <span class="block-title-p">Местонахождение: </span>-->
                     <span class="block-title-t">${title}</span>
@@ -180,7 +177,7 @@ r_handler - функция-обработчик ответа от сервера
 
                 </div>
                 <div class="block-mode">
-                    <span>Отслеживание: </span>
+                    <span style="margin-top: 4px">Отслеживание: </span>
                     <span>
                     <input class="tgl tgl-skewed" id="checkbox${id}" type="checkbox" ${enabled} onchange='set_enabled(this, ${id})'/>
                     <label class="tgl-btn" data-tg-off="выкл" data-tg-on="вкл" for="checkbox${id}"></label>
